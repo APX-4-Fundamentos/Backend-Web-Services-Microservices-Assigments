@@ -42,7 +42,8 @@ public class OpenApiConfiguration {
                         .url("https://docs.apxlearnhive.com"))
                 .servers(List.of(
                         new Server()
-                                .url("https://backend-web-services-microservices-oski.onrender.com")
+                                .url("http://localhost:8083")
+                                .description("Assignments (Microservice)")
                 ));
 
         // Add security scheme
