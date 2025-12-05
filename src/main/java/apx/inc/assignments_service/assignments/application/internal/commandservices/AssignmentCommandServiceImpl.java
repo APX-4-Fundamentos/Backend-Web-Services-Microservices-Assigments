@@ -25,7 +25,6 @@ public class AssignmentCommandServiceImpl implements AssignmentCommandService {
     private final SubmissionRepository submissionRepository;
     private final CloudinaryService cloudinaryService;
     private final CoursesApiService coursesApiService;
-    private final IamApiService iamApiService;
     private final AuthenticationService authenticationService;
 
     public AssignmentCommandServiceImpl(AssignmentRepository assignmentRepository, SubmissionRepository submissionRepository, CloudinaryService cloudinaryService, CoursesApiService coursesApiService, IamApiService iamApiService, AuthenticationService authenticationService) {
@@ -33,7 +32,6 @@ public class AssignmentCommandServiceImpl implements AssignmentCommandService {
         this.submissionRepository = submissionRepository;
         this.cloudinaryService=cloudinaryService;
         this.coursesApiService = coursesApiService;
-        this.iamApiService = iamApiService;
         this.authenticationService = authenticationService;
     }
 

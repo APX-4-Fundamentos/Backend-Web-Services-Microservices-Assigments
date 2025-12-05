@@ -1,5 +1,6 @@
 package apx.inc.assignments_service.assignments.interfaces.rest;
 
+import apx.inc.assignments_service.assignments.application.internal.services.external.IamApiService;
 import apx.inc.assignments_service.assignments.domain.model.commands.*;
 import apx.inc.assignments_service.assignments.domain.model.queries.*;
 import apx.inc.assignments_service.assignments.domain.services.SubmissionCommandService;
@@ -41,6 +42,7 @@ public class SubmissionsController {
     private final SubmissionCommandService submissionCommandService;
     private final SubmissionQueryService submissionQueryService;
     private final CloudinaryService cloudinaryService;
+    private final IamApiService iamApiService;
 
     @PostMapping
     @Operation(summary = "Create a new submission", description = "Creates a new submission for a challenge by a student.")
@@ -50,8 +52,9 @@ public class SubmissionsController {
     })
     public ResponseEntity<SubmissionResource> createSubmission(@RequestBody CreateSubmissionResource resource) {
         try {
-            // ✅ TEMPORAL: Para pruebas, usar un studentId fijo
-            Long studentId = 1L;
+
+
+            Long studentId = iamApiService.getCurrentUser().getId();
 
             // ✅ USO TUS TRANSFORMS ORIGINALES
             var command = CreateSubmissionCommandFromResourceAssembler.toCommandFromResource(resource, studentId);
@@ -82,11 +85,9 @@ public class SubmissionsController {
             @PathVariable Long submissionId,
             @RequestBody UpdateSubmissionResource resource) {
         try {
-            // ✅ TEMPORAL: Para pruebas, usar un studentId fijo
-            Long studentId = 1L;
 
             // ✅ USO TUS TRANSFORMS ORIGINALES
-            var command = UpdateSubmissionCommandFromResourceAssembler.toUpdateCommandFromResource(submissionId, resource,studentId);
+            var command = UpdateSubmissionCommandFromResourceAssembler.toUpdateCommandFromResource(submissionId, resource);
             var updatedSubmission = submissionCommandService.handle(command);
 
             // ✅ USO TUS TRANSFORMS ORIGINALES

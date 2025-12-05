@@ -99,4 +99,31 @@ public class IamApiService {
             return false;
         }
     }
+
+    public UserResponse getCurrentUser() {
+        try {
+            String token = getCurrentToken();
+            if (token == null) {
+                throw new RuntimeException("No authentication token found");
+            }
+
+            String url = iamBaseUrl + "/api/v1/users/me";
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", token);
+            HttpEntity<Void> request = new HttpEntity<>(headers);
+
+            ResponseEntity<UserResponse> response = restTemplate.exchange(
+                    url, HttpMethod.GET, request, UserResponse.class
+            );
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                return response.getBody();
+            } else {
+                throw new RuntimeException("Failed to get current user: " + response.getStatusCode());
+            }
+        } catch (Exception e) {
+            System.out.println("❌ Error obteniendo usuario actual: " + e.getMessage());
+            throw new RuntimeException("Failed to get current user: " + e.getMessage());
+        }
+    }
 }
