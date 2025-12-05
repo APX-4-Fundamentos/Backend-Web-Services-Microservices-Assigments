@@ -7,13 +7,11 @@ import apx.inc.assignments_service.assignments.interfaces.rest.resource.UpdateSu
 public class UpdateSubmissionCommandFromResourceAssembler {
     public static UpdateSubmissionCommand toUpdateCommandFromResource(
             Long submissionId,
-            UpdateSubmissionResource resource,
-            Long studentId  // Del contexto de seguridad
+            UpdateSubmissionResource resource
     ) {
         return new UpdateSubmissionCommand(
                 submissionId,
                 resource.assignmentId(),  // ✅ Del resource
-                studentId,               // ✅ Del contexto de seguridad
                 resource.content()       // ✅ Del resource
         );
     }

@@ -116,11 +116,15 @@
             <version>2.2.4</version>
         </dependency>
 
-<!--        &lt;!&ndash; Feign Client &ndash;&gt;-->
+<!--        &lt;!&ndash; Kafka &ndash;&gt;-->
 <!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
-<!--            <version>4.1.3</version>-->
+<!--            <groupId>org.springframework.kafka</groupId>-->
+<!--            <artifactId>spring-kafka</artifactId>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-databind</artifactId>-->
 <!--        </dependency>-->
 
 
